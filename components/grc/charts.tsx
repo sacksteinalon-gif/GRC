@@ -1,0 +1,5 @@
+'use client';import{BarChart,Bar,ResponsiveContainer,PieChart,Pie,Cell,LineChart,Line,Tooltip,XAxis}from'recharts';
+const colors=['#7c3aed','#dc2626','#f59e0b','#16a34a','#0891b2'];
+export function CategoryBarChart({data}:{data:{name:string;value:number}[]}){return <ResponsiveContainer height={220}><BarChart data={data}><XAxis dataKey="name"/><Tooltip/><Bar dataKey="value" fill="#7c3aed" radius={8}/></BarChart></ResponsiveContainer>}
+export function DonutChart({data}:{data:{name:string;value:number}[]}){const t=data.reduce((a,b)=>a+b.value,0);return <div className="relative"><ResponsiveContainer height={220}><PieChart><Pie data={data} dataKey="value" innerRadius={60} outerRadius={90}>{data.map((_,i)=><Cell key={i} fill={colors[i%colors.length]}/>)}</Pie><Tooltip/></PieChart></ResponsiveContainer><b className="absolute inset-0 grid place-items-center text-3xl">{t}</b></div>}
+export function TrendChart({data}:{data:{name:string;value:number}[]}){return <ResponsiveContainer height={220}><LineChart data={data}><XAxis dataKey="name"/><Tooltip/><Line dataKey="value" stroke="#7c3aed" strokeWidth={3}/></LineChart></ResponsiveContainer>}
